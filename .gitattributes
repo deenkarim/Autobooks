@@ -6,7 +6,6 @@
 *.razor linguist-detectable=true
 *.cs linguist-detectable=true
 *.vb linguist-detectable=true
-*.config linguist-detectable=true
 *.resx linguist-detectable=true
 
 # Optional: Ignore non-ASP.NET files
