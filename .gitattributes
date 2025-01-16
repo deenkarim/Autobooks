@@ -5,6 +5,7 @@
 *.aspx diff=aspnet
 *.master diff=aspnet
 *.config diff=aspnet
+*.json diff=aspnet
 
 # Optional: Ignore non-ASP.NET files
 *.js linguist-detectable=false
