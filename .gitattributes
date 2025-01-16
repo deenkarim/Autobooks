@@ -1,21 +1,17 @@
+# Force GitHub to detect ASP.NET (C# or VB.NET)
+*.aspx linguist-detectable=true
+*.ascx linguist-detectable=true
+*.cshtml linguist-detectable=true
+*.vbhtml linguist-detectable=true
+*.razor linguist-detectable=true
+*.cs linguist-detectable=true
+*.vb linguist-detectable=true
+*.config linguist-detectable=true
+*.resx linguist-detectable=true
 
-
-# Auto detect text files and perform LF normalization
-* text=auto
-
-# Custom for Visual Studio
-*.cs     diff=csharp
-*.vb     diff=vbnet
-*.aspx   diff=aspnet
-
-# Standard to msysgit
-*.doc	 diff=astextplain
-*.DOC	 diff=astextplain
-*.docx diff=astextplain
-*.DOCX diff=astextplain
-*.dot  diff=astextplain
-*.DOT  diff=astextplain
-*.pdf  diff=astextplain
-*.PDF	 diff=astextplain
-*.rtf	 diff=astextplain
-*.RTF	 diff=astextplain
+# Optional: Ignore non-ASP.NET files
+*.js linguist-detectable=false
+*.css linguist-detectable=false
+*.scss linguist-detectable=false
+*.cpp linguist-detectable=false
+*.py linguist-detectable=false
