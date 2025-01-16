@@ -1,0 +1,39 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeBehind="blank.master.vb" Inherits="autobooks.blank" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+   <webopt:bundlereference runat="server" path="~/Content/css" />
+   <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+   <link rel="shortcut icon" type="image/png" href="~/assets/images/logos/favicon.png" />
+   <link rel="stylesheet" href="~/assets/css/styles.min.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    </form>
+
+
+     <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/assets/libs/jquery/dist/jquery.min.js") %>
+        <%: Scripts.Render("~/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js") %>
+        <%: Scripts.Render("~/assets/js/sidebarmenu.js") %>
+        <%: Scripts.Render("~/assets/js/app.min.js") %>
+        <%: Scripts.Render("~/assets/libs/apexcharts/dist/apexcharts.min.js") %>
+        <%: Scripts.Render("~/assets/libs/simplebar/dist/simplebar.js") %>
+        <%: Scripts.Render("~/assets/js/dashboard.js") %>
+    </asp:PlaceHolder>
+</body>
+</html>

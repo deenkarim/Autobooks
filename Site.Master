@@ -1,0 +1,264 @@
+﻿<%@ Master Language="VB" AutoEventWireup="true" CodeBehind="Site.master.vb" Inherits="autobooks.SiteMaster" %>
+
+<%@ Import Namespace="autobooks" %>
+<%@ Import Namespace="Microsoft.AspNet.Identity" %>
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+   <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+   <link rel="shortcut icon" type="image/png" href="~/assets/images/logos/favicon.png" />
+   <link rel="stylesheet" href="~/assets/css/styles.min.css" />
+   <link rel="stylesheet" href="~/assets/css/bootstrap-select.min.css" />
+
+    <style>
+       .sidebarnav > li > ul > li a {  padding-left: 46px !important;}
+
+        .dd1:after {
+            border-top: 0.8em solid;
+            border-right: 0.8em solid transparent;
+            border-left: 0.8em solid transparent;
+        }
+
+    .container-fluid{
+        max-width:100% !important
+        }
+
+
+    a.sidebar-link.active {
+    background-color: #5D87FF;
+    color: #fff !important
+    }
+        a.sidebar-link.active:hover {
+            color: #2A3547 !important
+        }
+      </style>
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+
+         <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
+    <!-- Sidebar Start -->
+    <aside class="left-sidebar">
+      <!-- Sidebar scroll-->
+      <div>
+        <div class="brand-logo d-flex align-items-center justify-content-between">
+          <a href="./index.html" class="text-nowrap logo-img">
+            <img src="../assets/images/logos/dark-logo.svg" width="180" alt="" />
+          </a>
+          <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer" id="sidebarCollapse">
+            <i class="ti ti-x fs-8"></i>
+          </div>
+        </div>
+        <!-- Sidebar navigation-->
+        <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
+          <!--<ul id="sidebarnav"> -->
+          <ul class="sidebarnav nav-pills flex-column  align-items-center align-items-sm-start" id="menu">
+           <%-- <li class="nav-small-cap">
+              <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+              <span class="hide-menu">Home</span>
+            </li>--%>
+              <li class="sidebar-item"><a class="sidebar-link" runat="server" href="~/"><span>
+                  <i class="ti ti-home"></i>
+                </span>
+                <span class="hide-menu">Dashboard</span>
+                  </a>
+               </li>
+               <li class="sidebar-item"><a id="aitems" class="sidebar-link" runat="server" href="~/Items"><span>
+                  <i class="ti ti-clipboard-list"></i>
+                </span>
+                <span class="hide-menu">Items</span>
+                  </a>
+               </li>
+               <li class="sidebar-item">
+                  <a href="#subsales" data-bs-toggle="collapse" class="sidebar-link">
+                      <i class="ti ti-shopping-cart"></i><span>Sales</span> </a>
+                  <ul runat="server" class="collapse hide nav " id="subsales" data-bs-parent="#menu">
+                      <li class="w-100">
+                          <a id="acustomer" runat="server" href="/Sales/Customers" class="sidebar-link"><span>Customers</span></a>
+                      </li>
+                      <li class="w-100">
+                          <a id="aquotes" runat="server" href="~/Sales/Quotes" class="sidebar-link"><span>Quotes</span></a>
+                      </li>
+                      <li class="w-100">
+                          <a id="ainvoices" runat="server" href="~/Sales/Invoices" class="sidebar-link"><span>Invoices</span></a>
+                      </li>
+                  </ul>
+              </li>
+               <li class="sidebar-item">
+                  <a href="#subpurchases" data-bs-toggle="collapse" class="sidebar-link">
+                      <i class="ti ti-cards"></i><span>Purchases</span> </a>
+                  <ul  runat="server" class="collapse hide nav " id="subpurchases" data-bs-parent="#menu">
+
+                        <li class="w-100">
+                          <a id="asuppliers" runat="server" href="~/Purchases/Suppliers" class="sidebar-link"><span>Suppliers</span></a>
+                      </li>
+                      <li class="w-100">
+                          <a id="aorders" runat="server"  href="~/Purchases/Orders" class="sidebar-link"><span>Orders</span></a>
+                      </li>
+                      <li class="w-100">
+                          <a id="abills" runat="server" href="~/Purchases/Bills" class="sidebar-link"><span>Bills</span></a>
+                      </li>
+                      <li class="w-100">
+                          <a id="aexpenses" runat="server" href="~/Purchases/Expenses" class="sidebar-link"><span>Expenses</span></a>
+                      </li>
+                      
+                  </ul>
+              </li>
+             
+          </ul>
+        </nav>
+        <!-- End Sidebar navigation -->
+      </div>
+      <!-- End Sidebar scroll-->
+    </aside>
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      <header class="app-header">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <ul class="navbar-nav">
+            <li class="nav-item d-block d-xl-none">
+              <a class="nav-link sidebartoggler nav-icon-hover" id="headerCollapse" href="javascript:void(0)">
+                <i class="ti ti-menu-2"></i>
+              </a>
+            </li>
+              <li class="nav-item">
+                    <asp:DropDownList  ID="OrganisationList" runat="server" CssClass="form-select form-control-lg"  AutoPostBack="true" ViewStateMode="Enabled" EnableViewState="true" ></asp:DropDownList>
+                    <asp:Hyperlink class="btn btn-primary" NavigateUrl="~/Account/Organisations" ID="OrgButton" runat="server" Visible="false" text="Add Organisation" ></asp:Hyperlink>
+              </li>
+            <!-- <li class="nav-item">
+              <a class="nav-link nav-icon-hover" href="javascript:void(0)">
+                <i class="ti ti-bell-ringing"></i>
+                <div class="notification bg-primary rounded-circle"></div>
+              </a>
+            </li> -->
+          </ul>
+
+          <div class="navbar-collapse justify-content-end px-0" id="navbarNav">
+             <ul class="navbar-nav flex-row ms-auto align-items-center justify-content-end">
+                  
+   
+                 
+                   <asp:LoginView runat="server" ViewStateMode="Disabled">
+                        <AnonymousTemplate>
+                            <a runat="server" class="btn btn-primary" href="~/Account/Register">Register</a> &nbsp;&nbsp;
+                            <a runat="server" class="btn btn-primary" href="~/Account/Login">Log in</a>
+                        </AnonymousTemplate>
+
+
+                        <LoggedInTemplate>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link nav-icon-hover" href="javascript:void(0)" id="drop2" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    <img src="../assets/images/profile/user-1.jpg" alt="<%: Context.User.Identity.GetUserName()  %>" width="35" height="35" class="rounded-circle">
+                                </a>
+                                &nbsp;&nbsp;&nbsp;&nbsp;<div class="dropdown-menu dropdown-menu-end dropdown-menu-animate-up" aria-labelledby="drop2">
+                                    <div class="message-body">
+
+                                        <a runat="server" href="~/Account/Organisations" class="d-flex align-items-center gap-2 dropdown-item">
+                                            <i class="ti ti-mail fs-6"></i>
+                                            <p class="mb-0 fs-3">My Organisations</p>
+                                        </a>
+
+                                        <a runat="server" href="~/Account/Manage" class="d-flex align-items-center gap-2 dropdown-item">
+                                            <i class="ti ti-user fs-6"></i>
+                                            <p class="mb-0 fs-3">My Profile</p>
+                                        </a>
+
+                                        <asp:LoginStatus runat="server" CssClass="btn btn-outline-primary mx-3 mt-2 d-block" LogoutAction="Redirect" LogoutText="Logout" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                    </div>
+                                </div>
+                            </li>
+                       </LoggedInTemplate>
+                    </asp:LoginView>
+            </ul>
+          </div>
+        </nav>
+
+          <asp:ContentPlaceHolder runat="server" ID="titleControl" Visible="false">
+          <div class="row align-items-start">
+              <div class="col text-start">
+                   <div class="dropdown show">
+                      <a class="dropdown-toggle dd1" href="#" role="button" id="dropdownMenuLink" data-bs-toggle='dropdown' aria-haspopup="true" aria-expanded="false">
+                          <asp:Label ID="titlepage" runat="server" CssClass="h4"></asp:Label>
+                      </a>
+
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                          <a class="dropdown-item" href="#">Action</a>
+                          <a class="dropdown-item" href="#">Another action</a>
+                          <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="col text-end">
+                  <asp:Button runat="server" ID="createNew" class="btn btn-primary " Text="+ New" />
+
+                   <asp:Button runat="server" ID="btnClose" class="btn btn-secondary " Text="Cancel" Visible="false" />
+
+              </div>
+          </div>
+        </asp:ContentPlaceHolder>
+      </header>
+      <!--  Header End -->
+
+      <div class="container-fluid">
+          <br />
+          <br />
+          <br />
+ 
+      <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+ 
+     
+
+      </div>
+    </div>
+  </div>
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/assets/libs/jquery/dist/jquery.min.js") %>
+        <%: Scripts.Render("~/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js") %>
+        <%: Scripts.Render("~/assets/js/bootstrap-select.min.js") %>
+        <%: Scripts.Render("~/assets/js/sidebarmenu.js") %>
+        <%: Scripts.Render("~/assets/js/app.min.js") %>
+        <%: Scripts.Render("~/assets/libs/apexcharts/dist/apexcharts.min.js") %>
+        <%: Scripts.Render("~/assets/libs/simplebar/dist/simplebar.js") %>
+        <%: Scripts.Render("~/assets/js/dashboard.js") %>
+    </asp:PlaceHolder>
+    </form> 
+</body>
+
+
+ 
+ 
+</html>
