@@ -1,9 +1,21 @@
-# Force GitHub to detect VB.NET as the main language
-*.vb linguist-detectable=true
-*.Designer.vb linguist-detectable=true
-*.resx linguist-detectable=true
 
-# Optional: Ignore other languages
-*.cs linguist-detectable=false
-*.cpp linguist-detectable=false
-*.py linguist-detectable=false
+
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Custom for Visual Studio
+*.cs     diff=csharp
+*.vb     diff=vbnet
+*.aspx   diff=aspnet
+
+# Standard to msysgit
+*.doc	 diff=astextplain
+*.DOC	 diff=astextplain
+*.docx diff=astextplain
+*.DOCX diff=astextplain
+*.dot  diff=astextplain
+*.DOT  diff=astextplain
+*.pdf  diff=astextplain
+*.PDF	 diff=astextplain
+*.rtf	 diff=astextplain
+*.RTF	 diff=astextplain
