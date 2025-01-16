@@ -1,13 +1,9 @@
 # Force GitHub to detect ASP.NET (C# or VB.NET)
-*.aspx linguist-detectable=true
-*.ascx linguist-detectable=true
-*.cshtml linguist-detectable=true
-*.vbhtml linguist-detectable=true
-*.razor linguist-detectable=true
-*.cs linguist-detectable=true
-*.vb linguist-detectable=true
-*.resx linguist-detectable=true
 
+*.js diff=aspnet
+*.css diff=aspnet
+*.vb diff=aspnet
+*.aspx diff=aspnet
 # Optional: Ignore non-ASP.NET files
 *.js linguist-detectable=false
 *.css linguist-detectable=false
