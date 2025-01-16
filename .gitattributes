@@ -15,4 +15,5 @@
 *.scss linguist-detectable=false
 *.cpp linguist-detectable=false
 *.py linguist-detectable=false
-*.xml linguist-detectable=false
+*.config linguist-detectable=false
+*.master linguist-detectable=false
